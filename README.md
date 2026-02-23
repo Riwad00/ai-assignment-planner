@@ -11,7 +11,7 @@ A Streamlit prototype that uses AI to deconstruct complex assignment briefs into
 - **Multi-Model Support**: Connects to OpenAI (GPT-4o), Anthropic (Claude 3.5), and Google (Gemini 1.5/2.0).
 - **In-App API Verification**: instantly tests your API key before you begin.
 - **Smart Parsing**: Upload up to 25,000 characters of a PDF grading rubric or assignment brief.
-- **Actionable Steps**: The AI breaks down the task into concrete, trackable checkboxes with time estimates and procrastination warnings.
+- **Actionable Steps**: The AI breaks down the task into concrete, trackable checkboxes with time estimates and procrastination warnings. 
 
 ## Architecture
 This project adheres to separation of concerns by splitting the user interface and prediction logic:
