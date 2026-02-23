@@ -2,7 +2,7 @@ import streamlit as st
 
 # ── Page config ──────────────────────────────────────────────────────────────
 st.set_page_config(
-    page_title="Am I Overcomplicating This?",
+    page_title="Overcomplicating An Assignment?",
     page_icon="🧠",
     layout="centered",
     initial_sidebar_state="collapsed",
@@ -24,10 +24,10 @@ for key, default in [
         st.session_state[key] = default
 
 # ── Header ────────────────────────────────────────────────────────────────────
-st.title("🧠 Am I Overcomplicating This?")
+st.title("🧠 Overcomplicating An Assignment? Break It Down Into Steps")
 st.markdown(
-    "*Upload your assignment, rubric, or brief — the AI will read it and "
-    "build a clear, step-by-step action plan.*"
+    "*Feeling overwhelmed by an assignment? Upload it and let AI turn it "
+    "into a clear, actionable plan — one step at a time.*"
 )
 st.divider()
 

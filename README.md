@@ -1,6 +1,6 @@
-# Am I Overcomplicating This? 🧠
+# Overcomplicating An Assignment? Break It Down Into Steps 🧠
 
-A Streamlit prototype that uses AI to deconstruct complex assignment briefs into actionable, step-by-step plans.
+*Feeling overwhelmed by an assignment? Upload it and let AI turn it into a clear, actionable plan — one step at a time.*
 
 **[Try the app live →](https://ai-assignment-planner-for-pdai-a1.streamlit.app)** 
 
