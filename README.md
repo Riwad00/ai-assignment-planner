@@ -2,7 +2,7 @@
 
 *Feeling overwhelmed by an assignment? Upload it and let AI turn it into a clear, actionable plan — one step at a time.*
 
-**[Try the app live →](https://ai-assignment-planner-for-pdai-a1.streamlit.app)** 
+**[Try the app live →](https://ai-assignment-planner-for-pdai-a1.streamlit.app)**  (this app is hosted on streamlit. from my testing, the app loading might depened on the browser)
 
 **[📹 Watch the demo video](https://github.com/Riwad00/ai-assignment-planner/raw/main/app%20demo.mp4)** *(click to play)*
 
@@ -39,7 +39,7 @@ This project adheres to separation of concerns by splitting the user interface a
    ```
 
 ## Usage
-1. Open the local Network URL provided by Streamlit (usually `http://localhost:8501`).
+1. Open the local Network URL provided by Streamlit.
 2. Complete **Step 1** by selecting a provider and entering your API key (or switch on Demo Mode). Test the connection.
 3. Complete **Step 2** by uploading your assignment PDF and setting your available time.
 4. View your results in **Step 3** and start checking off tasks!
