@@ -4,6 +4,8 @@
 
 **[Try the app live →](https://ai-assignment-planner-for-pdai-a1.streamlit.app)** 
 
+<video src="https://github.com/Riwad00/ai-assignment-planner/raw/main/app%20demo.mp4" controls width="600"></video>
+
 **Note:** *This project serves as a second iteration and another retry shot at solving the challenge of prototyping digital products with AI.*
 
 ## Features
