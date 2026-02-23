@@ -1,6 +1,8 @@
 # Am I Overcomplicating This? 🧠
 
-A Streamlit prototype that uses AI to deconstruct complex assignment briefs into actionable, step-by-step plans. 
+A Streamlit prototype that uses AI to deconstruct complex assignment briefs into actionable, step-by-step plans.
+
+**[Try the app live →](https://ai-assignment-planner-for-pdai-a1.streamlit.app)** 
 
 **Note:** *This project serves as a second iteration and another retry shot at solving the challenge of prototyping digital products with AI.*
 
