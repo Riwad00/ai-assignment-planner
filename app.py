@@ -147,12 +147,15 @@ if st.session_state.current_step == 1:
     st.session_state.demo_mode = demo_mode
 
     if not demo_mode:
+        provider_options = ["OpenAI (GPT)", "Anthropic (Claude)", "Google Gemini", "Cohere"]
+        # Ensure the saved provider is always a valid option
+        if st.session_state.provider not in provider_options:
+            st.session_state.provider = "OpenAI (GPT)"
+
         provider = st.radio(
             "AI Provider",
-            ["OpenAI (GPT)", "Anthropic (Claude)", "Google Gemini"],
-            index=["OpenAI (GPT)", "Anthropic (Claude)", "Google Gemini"].index(
-                st.session_state.provider
-            ),
+            provider_options,
+            index=provider_options.index(st.session_state.provider),
             horizontal=True,
         )
         st.session_state.provider = provider
@@ -165,12 +168,25 @@ if st.session_state.current_step == 1:
             )
         elif provider == "Anthropic (Claude)":
             api_key = st.text_input("Anthropic API Key", type="password", placeholder="sk-ant-...")
-            model_choice = st.selectbox("Model", ["claude-sonnet-4-6", "claude-haiku-4-5-20251001", "claude-opus-4-6"])
-        else:
+            model_choice = st.selectbox(
+                "Model",
+                ["claude-sonnet-4-6", "claude-haiku-4-5-20251001", "claude-opus-4-6"],
+            )
+        elif provider == "Google Gemini":
             api_key = st.text_input("Google API Key", type="password", placeholder="AIza...")
             model_choice = st.selectbox(
                 "Model",
                 ["gemini-1.5-pro", "gemini-1.5-flash", "gemini-2.0-flash", "gemini-2.0-pro"],
+            )
+        else:  # Cohere
+            api_key = st.text_input("Cohere API Key", type="password", placeholder="coh-...")
+            model_choice = st.selectbox(
+                "Model",
+                [
+                    "command-a-03-2025",
+                    "command-r-plus-08-2024",
+                    "command-r-08-2024",
+                ],
             )
         st.session_state.api_key = api_key
         st.session_state.model_choice = model_choice

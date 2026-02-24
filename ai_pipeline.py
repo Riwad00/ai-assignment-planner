@@ -33,6 +33,18 @@ def verify_api_key(provider, model, api_key):
             )
             reply = (msg.content[0].text or "").strip()
 
+        elif provider == "Cohere":
+            import cohere
+            client = cohere.ClientV2(api_key=api_key)
+            resp = client.chat(
+                model=model,
+                messages=[{"role": "user", "content": "Reply with exactly: OK"}],
+                max_tokens=8,
+                temperature=0,
+            )
+            # Chat V2 returns a message object with content list; first item is text
+            reply = (resp.message.content[0].text or "").strip()
+
         else:  # Google Gemini
             import google.generativeai as genai
             genai.configure(api_key=api_key)
@@ -291,6 +303,26 @@ Student's issue: {issue_text}"""
         )
         return response.choices[0].message.content.strip()
 
+    if provider == "Cohere":
+        try:
+            import cohere
+        except ModuleNotFoundError as exc:
+            raise ModuleNotFoundError("Missing dependency: cohere. Install with `pip install cohere`.") from exc
+        client = cohere.ClientV2(api_key=api_key)
+        # Put style instructions directly into the user message for simplicity
+        response = client.chat(
+            model=model,
+            messages=[
+                {
+                    "role": "user",
+                    "content": "You are a calm, practical tutor. Respond with concise bullets only.\n\n"
+                    + helper_prompt,
+                }
+            ],
+            max_tokens=600,
+        )
+        return response.message.content[0].text.strip()
+
     try:
         import google.generativeai as genai
     except ModuleNotFoundError as exc:
@@ -338,6 +370,24 @@ def call_ai(pdf_text, task, hours, overwhelm, context, provider, api_key, model)
         response = client.chat.completions.create(**openai_params)
         raw = response.choices[0].message.content.strip()
 
+    elif provider == "Cohere":
+        try:
+            import cohere
+        except ModuleNotFoundError as exc:
+            raise ModuleNotFoundError("Missing dependency: cohere. Install with `pip install cohere`.") from exc
+        client = cohere.ClientV2(api_key=api_key)
+        response = client.chat(
+            model=model,
+            messages=[
+                {
+                    "role": "user",
+                    "content": f"{SYSTEM_PROMPT}\n\n{user_msg}",
+                }
+            ],
+            max_tokens=4000,
+        )
+        raw = response.message.content[0].text.strip()
+
     else:  # Gemini
         try:
             import google.generativeai as genai
@@ -377,6 +427,18 @@ def call_ai(pdf_text, task, hours, overwhelm, context, provider, api_key, model)
             }
             response = client.chat.completions.create(**openai_params)
             raw = response.choices[0].message.content.strip()
+        elif provider == "Cohere":
+            response = client.chat(
+                model=model,
+                messages=[
+                    {
+                        "role": "user",
+                        "content": f"{SYSTEM_PROMPT}\n\n{retry_msg}",
+                    }
+                ],
+                max_tokens=4000,
+            )
+            raw = response.message.content[0].text.strip()
         else:
             response = model_client.generate_content(
                 f"{SYSTEM_PROMPT}\n\n{retry_msg}",
